@@ -2,10 +2,8 @@ from pyrogram import Client, filters
 from utils import save_file
 from info import CHANNELS
 
-media_filter = filters.document | filters.video | filters.audio
 
-
-@Client.on_message(filters.chat(CHANNELS) & media_filter)
+@Client.on_message(filters.chat(CHANNELS) & filters.document | filters.video | filters.audio)
 async def media(bot, message):
     """Media Handler"""
     for file_type in ("document", "video", "audio"):
