@@ -1,7 +1,7 @@
 #Kanged From @TroJanZheX
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 import re
 from pyrogram.errors import UserNotParticipant
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
@@ -19,7 +19,7 @@ async def filter(client, message):
                 await client.send_message(
                     chat_id=message.from_user.id,
                     text="Sorry Sir, You are Banned to use me.",
-                    parse_mode="markdown",
+                    parse_mode=enums.ParseMode.MARKDOWN,
                     disable_web_page_preview=True
                 )
                 return
@@ -34,14 +34,14 @@ async def filter(client, message):
                         ]
                     ]
                 ),
-                parse_mode="markdown"
+                parse_mode=enums.ParseMode.MARKDOWN
             )
             return
         except Exception:
             await client.send_message(
                 chat_id=message.from_user.id,
                 text="Something went Wrong.",
-                parse_mode="markdown",
+                parse_mode=enums.ParseMode.MARKDOWN,
                 disable_web_page_preview=True
             )
             return
